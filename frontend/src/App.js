@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CreatePropertyOwner from './components/PropertyOwner/createPropertyOwner';
 import CreateTenant from './components/Tenants/createTenant';
 
 const  App = () => {
@@ -11,7 +12,7 @@ const  App = () => {
       <CreateTenant/>
           </Route>
           <Route exact path="/create/propetyowner">
-      <div>Create PropertyOwner here</div>
+      <CreatePropertyOwner/>
           </Route>
           <Route exact path="/">
             <div>You are on the landing page</div>

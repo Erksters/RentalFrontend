@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
-import "./createTenant.css";
+import "./createPropertyOwner.css";
 
-const CreateTenant = (props) => {
+const CreatePropertyOwner = (props) => {
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [Email, setEmail] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState(0);
-  
+  const [Street1, setStreet1] = useState("");
+  const [Street2, setStreet2] = useState("");
+  const [ZipCode, setZipcode] = useState(0);
+  const [City, setCity] = useState("");
+
   const handleSubmit = () => {
 
     if (FirstName === "" || LastName === ""){
@@ -20,8 +24,16 @@ const CreateTenant = (props) => {
     if(!Email.includes("@")){
       swal("Please Enter a legitimate email");
     }
-
-    //send it
+    if (City === ""){
+        swal("Please Enter a city name.");
+    }
+    if (Street1 === ""){
+        swal("Please Enter a Street address name.");
+    }
+    if(ZipCode > 99999 || ZipCode === 0){
+        swal("Please Enter a legitimate Zip Code");
+      }
+    //TODO: send it
     //Is there a unique constraint error?
     //Did it successfully Save?
   }
@@ -29,7 +41,7 @@ const CreateTenant = (props) => {
   return(
       <div className="centerDiv">
         <div >
-            <h3>Enter Tenant information here</h3>
+            <h3>Enter PropertyOwner information here</h3>
             <label className="pr-2">First Name</label>
             <input type="text" onChange={(e) => setFirstName(e.target.value)} />
             <br/>
@@ -41,9 +53,24 @@ const CreateTenant = (props) => {
             <br/>
             <label className="pr-2">Phone</label>
             <input type="number" onChange={(e) => setPhoneNumber(e.target.value)} />
-            
+            <br/>
+            <label className="pr-2">Street Address</label>
+            <input type="text" onChange={(e) => setStreet1(e.target.value)} />
+            <br/>
+            <label className="pr-2">Secondary Street Address</label>
+            <input type="text" onChange={(e) => setStreet2(e.target.value)} />
+            <br/>
 
-            <Button onClick ={handleSubmit}>
+            <label className="pr-2">City</label>
+            <input type="text" onChange={(e) => setCity(e.target.value)} />
+            <br/>
+
+            <label className="pr-2">ZipCode</label>
+            <input type="number" onChange={(e) => setZipcode(e.target.value)} />
+            
+            <br/>
+
+            <Button size="lg" onClick={handleSubmit}>
                 Submit
             </Button>
         </div>
@@ -53,4 +80,4 @@ const CreateTenant = (props) => {
   )
 }
 
-export default CreateTenant;
+export default CreatePropertyOwner;

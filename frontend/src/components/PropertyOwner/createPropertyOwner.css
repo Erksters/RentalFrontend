@@ -2,3 +2,7 @@
   justify-content: center;
   display: flex;
 }
+
+.labels {
+  min-width: 100px;
+}

@@ -42,30 +42,30 @@ const CreatePropertyOwner = (props) => {
       <div className="centerDiv">
         <div >
             <h3>Enter PropertyOwner information here</h3>
-            <label className="pr-2">First Name</label>
+            <label className="pr-2 labels">First Name</label>
             <input type="text" onChange={(e) => setFirstName(e.target.value)} />
             <br/>
-            <label className="pr-2">Last Name</label>
+            <label className="pr-2 labels">Last Name</label>
             <input type="text" onChange={(e) => setLastName(e.target.value)} />
             <br/>
-            <label className="pr-2">Email</label>
+            <label className="pr-2 labels">Email</label>
             <input type="text" onChange={(e) => setEmail(e.target.value)} />
             <br/>
-            <label className="pr-2">Phone</label>
+            <label className="pr-2 labels">Phone</label>
             <input type="number" onChange={(e) => setPhoneNumber(e.target.value)} />
             <br/>
-            <label className="pr-2">Street Address</label>
+            <label className="pr-2 labels">Street Address</label>
             <input type="text" onChange={(e) => setStreet1(e.target.value)} />
             <br/>
-            <label className="pr-2">Secondary Street Address</label>
+            <label className="pr-2 labels">Secondary Street Address</label>
             <input type="text" onChange={(e) => setStreet2(e.target.value)} />
             <br/>
 
-            <label className="pr-2">City</label>
+            <label className="pr-2 labels">City</label>
             <input type="text" onChange={(e) => setCity(e.target.value)} />
             <br/>
 
-            <label className="pr-2">ZipCode</label>
+            <label className="pr-2 labels">ZipCode</label>
             <input type="number" onChange={(e) => setZipcode(e.target.value)} />
             
             <br/>

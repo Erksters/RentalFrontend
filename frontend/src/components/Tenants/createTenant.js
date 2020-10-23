@@ -30,20 +30,20 @@ const CreateTenant = (props) => {
       <div className="centerDiv">
         <div >
             <h3>Enter Tenant information here</h3>
-            <label className="pr-2">First Name</label>
+            <label className="pr-2 labels">First Name</label>
             <input type="text" onChange={(e) => setFirstName(e.target.value)} />
             <br/>
-            <label className="pr-2">Last Name</label>
+            <label className="pr-2 labels">Last Name</label>
             <input type="text" onChange={(e) => setLastName(e.target.value)} />
             <br/>
-            <label className="pr-2">Email</label>
+            <label className="pr-2 labels">Email</label>
             <input type="text" onChange={(e) => setEmail(e.target.value)} />
             <br/>
-            <label className="pr-2">Phone</label>
+            <label className="pr-2 labels">Phone</label>
             <input type="number" onChange={(e) => setPhoneNumber(e.target.value)} />
-            
+            <br/>
 
-            <Button onClick ={handleSubmit}>
+            <Button size="lg" onClick ={handleSubmit}>
                 Submit
             </Button>
         </div>

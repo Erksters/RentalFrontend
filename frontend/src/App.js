@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreateApartment from './components/Apartment/createApartment';
+import LandingPage from './components/LandingPage/landingPage';
 import CreatePropertyOwner from './components/PropertyOwner/createPropertyOwner';
 import CreateTenant from './components/Tenants/createTenant';
 
@@ -19,7 +20,7 @@ const  App = () => {
             <CreatePropertyOwner/>
           </Route>
           <Route exact path="/">
-            <div>You are on the landing page</div>
+<LandingPage/>
           </Route>
         </Switch>
       </Router>

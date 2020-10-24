@@ -28,6 +28,35 @@ const LandingPage = () => {
          setPetsAllowed(false);
     }
 
+    const loadData = async () => {
+        const filterData = new FormData();
+        filterData.append("city", City);
+        filterData.append("zipcode", ZipCode);
+        if(YearBuilt !== undefine){
+            filterData.append("YearBuilt", YearBuilt);
+        }else{filterData.append("YearBuilt",undefined)}
+        filterData.append("centralac", CentralAC);
+        filterData.append("numberrooms", NumberRooms);
+        filterData.append("numberbathrooms", NumberBathrooms);
+        filterData.append("refurbished", Refurbished);
+        filterData.append("petallowed", PetsAllowed);
+
+        await fetch(``,{
+            method: "GET",
+            body: filterData,
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            if (data.length > 0) {
+              setThisShirt([...data]);
+            } else {
+              setThisShirt(404);
+            }
+          })
+          .catch((error) => {});
+      };
     
     useEffect(()=>{
         

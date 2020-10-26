@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Collapse } from "react-bootstrap";
+import { Button, Card, CardImg, Col, Collapse, Row ,} from "react-bootstrap";
 
 const LandingPage = () => {
     const sampleImage = "https://apollostore.blob.core.windows.net/multifamilybiz/News/Verve_Luxury_Apartments.jpg";
-    const [ZipCode, setZipcode] = useState(66502);
+    const [Zipcode, setZipcode] = useState(66502);
     const [City, setCity] = useState("");
     const [MonthlyPrice, setMonthlyPrice] = useState(0)
     const [Available, setAvailable] = useState(true);
@@ -14,44 +14,51 @@ const LandingPage = () => {
     const [Refurbished, setRefurbished] = useState(false);
     const [PetsAllowed, setPetsAllowed] = useState(false);
 
-    const [searchByZipCode, setSeachByZipcode] = useState(true);
-    const [searchByCity, setsearchByCity] = useState(false);
-    const [searchByMonthlyPrice, setsearchByMonthlyPrice] = useState(true);
+    const [searchByZipcode, setSearchByZipcode] = useState(false);
+    const [searchByCity, setSearchByCity] = useState(false);
+    const [searchByMonthlyPrice, setsearchByMonthlyPrice] = useState(false);
     const [searchByAvailable, setSearchByAvailable] = useState(false);
-    const [searchByYearBuilt, setsearchBySearchByYearBuilt] = useState(false);
+    const [searchByYearBuilt, setsearchByYearBuilt] = useState(false);
     const [searchByCentralAC, setSearchByCentralAC] = useState(false);
     const [searchByNumberBathrooms, setsearchByNumberBathrooms ] = useState(false);
     const [searchByNumberRooms, setsearchByNumberRooms ] = useState(false);
     const [searchByRefurbished, setSearchByRefurbished ] = useState(false);
     const [searchByPetsAllowed, setsearchByPetsAllowed] = useState(false);
 
-    const [listOfApartments] = useState([1]);
-
-
-    const [open, setOpen] = useState(false);
-
+    const [listOfApartments, setListOfApartments] = useState([1,1,1,1]);
 
     const handleReset = () => {
-         setZipcode(66502);
-         setCity(""); 
-         setMonthlyPrice(0);
-         setAvailable(true); 
-         setYearBuilt(undefined); 
-         setCentralAC(false); 
-         setNumberRooms(0); 
-         setNumberBathrooms(0);
-         setRefurbished(false); 
-         setPetsAllowed(false);
+        setZipcode(66502);
+        setCity(""); 
+        setMonthlyPrice(0);
+        setAvailable(true); 
+        setYearBuilt(undefined); 
+        setCentralAC(false); 
+        setNumberRooms(0); 
+        setNumberBathrooms(0);
+        setRefurbished(false); 
+        setPetsAllowed(false);
+
+        setSearchByZipcode(false);
+        setSearchByCity(false);
+        setsearchByMonthlyPrice(false);
+        setSearchByAvailable(false);
+        setsearchByYearBuilt(false);
+        setSearchByCentralAC(false);
+        setsearchByNumberBathrooms(false);
+        setsearchByNumberRooms(false);
+        setSearchByRefurbished(false);
+        setsearchByPetsAllowed(false);
     }
 
-    const handleSubmit = () => {
+    const handleSearch = () => {
 
     }
 
     const loadData = async () => {
         const filterData = new FormData();
         filterData.append("city", City);
-        filterData.append("zipcode", ZipCode);
+        filterData.append("zipcode", Zipcode);
         if(YearBuilt !== undefined){
             filterData.append("YearBuilt", YearBuilt);
         }else{filterData.append("YearBuilt",undefined)}
@@ -61,7 +68,8 @@ const LandingPage = () => {
         filterData.append("refurbished", Refurbished);
         filterData.append("petallowed", PetsAllowed);
 
-        await fetch(``,{
+        //TODO: add appropriate url to fetch argument
+        await fetch(`localhost:8000/get/apartments`,{
             method: "GET",
             body: filterData,
         })
@@ -76,68 +84,141 @@ const LandingPage = () => {
     
     useEffect(()=>{
         
+        // setListOfApartments(loadData());  //Should return a list
     })
 
     return(
         <div>
-            <div>
-            <label className="pr-2 labels">City</label>
-            <input type="text" onChange={(e) => setCity(e.target.value)} />
-            <br/>
-            <label className="pr-2 labels">ZipCode</label>
-            <input type="number" onChange={(e) => setZipcode(e.target.value)} />
-            <br/>
+            <Row>
+                <Col>
+                    <Button onClick={() => setSearchByCity(!searchByCity)}>
+                        City
+                    </Button>
+                    <Collapse in={searchByCity}>
+                    <div >
+                            <input type="text" value={City} onChange={(e) => setCity(e.target.value)} />
+                    </div>
+                    </Collapse>
+                    <br/>            
 
-            <label className="pr-2 labels">Available</label>
-            <input type="checkbox" onChange={(e) => setAvailable(e.target.value)} />
-            <br/>
+                    <Button onClick={() => setSearchByZipcode(!searchByZipcode)}>
+                        Zipcode
+                    </Button>
+                    <Collapse in={searchByZipcode}>
+                    <div >
+                        <input type="number" value={Zipcode} onChange={(e) => setZipcode(e.target.value)} />
+                    </div>
+                    </Collapse>
+                    <br/>     
 
-            <label className="pr-2 labels">YearBuilt</label>
-            <input type="number" onChange={(e) => setYearBuilt(e.target.value)} />
-            <br/>
+                    <Button onClick={() => setSearchByAvailable(!searchByAvailable)}>
+                        Available
+                    </Button>
+                    <Collapse in={searchByAvailable}>
+                    <div >
+                    <label >{Available ? "Currently Available": "Currently Not Available"}</label>
+                            <input type="checkbox" defaultChecked={true} onClick={(e) => setAvailable(!Available)} />
+                    </div>
+                    </Collapse>
+                    <br/>            
 
-            {/* TODO Date Available */}
 
-            <label className="pr-2 labels">Monthly Price</label>
-            <input type="number" onChange={(e) => setMonthlyPrice(e.target.value)} />
-            <br/>
+                    <Button onClick={() => setsearchByYearBuilt(!searchByYearBuilt)}>
+                        YearBuilt
+                    </Button>
+                    <Collapse in={searchByYearBuilt}>
+                    <div >
+                        <input type="number" value={YearBuilt} onChange={(e) => setYearBuilt(e.target.value)} />
+                    </div>
+                    </Collapse>
+                    <br/>     
 
-            <label className="pr-2 labels">Central AC</label>
-            <input type="checkbox" onChange={(e) => setCentralAC(e.target.value)} />
-            <br/>
+                    {/* TODO Date Available */}
 
-            <label className="pr-2 labels">Number Of Rooms</label>
-            <input type="number" onChange={(e) => setNumberRooms(e.target.value)} />
-            <br/>
 
-            <label className="pr-2 labels">Number of Bathrooms</label>
-            <input type="number" onChange={(e) => setNumberBathrooms(e.target.value)} />
-            <br/>
-{/* 
-            <label className="pr-2 labels">Refurbished</label>
-            <input type="checkbox" value={searchByRefurbished} onChange={(e) => setSearchByRefurbished(e.target.value)} />
-            {searchByRefurbished && 
-                <input type="checkbox" onChange={(e) => setRefurbished(e.target.value)} />
-            }
-            <br/> */}
-            
-            
-        
+                    <Button onClick={() => setsearchByMonthlyPrice(!searchByMonthlyPrice)}>
+                        MonthlyPrice
+                    </Button>
+                    <Collapse in={searchByMonthlyPrice}>
+                    <div >
+                            <input type="number" value={MonthlyPrice} onChange={(e) => setMonthlyPrice(e.target.value)} />
+                    </div>
+                    </Collapse>
+                    <br/>     
 
-            <Button onClick={() => setsearchByPetsAllowed(!searchByPetsAllowed)}>
-                Pets
-            </Button>
-            <Collapse in={searchByPetsAllowed}>
-                <div >
-                <label >{PetsAllowed ? "Pets allowed": "No Pets allowed"}</label>
-                        <input type="checkbox" onClick={(e) => setPetsAllowed(!PetsAllowed)} />
-                </div>
-            </Collapse>
-            <br/>
-            
-            <Button onClick={handleSubmit}>Search</Button>
-            <Button onClick ={handleReset}>Reset Filters</Button>
-            </div>
+                    <Button onClick={() => setSearchByCentralAC(!searchByCentralAC)}>
+                    CentralAC
+                    </Button>
+                    <Collapse in={searchByCentralAC}>
+                    <div >
+                    <label >{CentralAC ? "With CentralAC": "No CentralAC"}</label>
+                            <input type="checkbox" onClick={(e) => setCentralAC(!CentralAC)} />
+                    </div>
+                    </Collapse>
+                    <br/>            
+
+                    <Button onClick={() => setsearchByNumberRooms(!searchByNumberRooms)}>
+                        Number of Rooms
+                    </Button>
+                    <Collapse in={searchByNumberRooms}>
+                    <div >
+                            <input type="number" value={NumberRooms} onChange={(e) => setNumberRooms(e.target.value)} />
+                    </div>
+                    </Collapse>
+                    <br/>     
+
+                    <Button onClick={() => setsearchByNumberBathrooms(!searchByNumberBathrooms)}>
+                        Number of Bathrooms
+                    </Button>
+                    <Collapse in={searchByNumberBathrooms}>
+                        <div >
+                            <input type="number" value={NumberBathrooms} onChange={(e) => setNumberBathrooms(e.target.value)} />
+                        </div>
+                    </Collapse>
+                    <br/>     
+
+                    <Button onClick={() => setSearchByRefurbished(!searchByRefurbished)}>
+                        Refurbished
+                    </Button>
+                    <Collapse in={searchByRefurbished}>
+                        <div >
+                        <label >{Refurbished ? "Refurbished": "Not Refurbished"}</label>
+                                <input type="checkbox" onClick={(e) => setRefurbished(!Refurbished)} />
+                        </div>
+                    </Collapse>
+                    <br/>            
+                
+                    <Button onClick={() => setsearchByPetsAllowed(!searchByPetsAllowed)}>
+                        Pets
+                    </Button>
+                    <Collapse in={searchByPetsAllowed}>
+                        <div >
+                        <label >{PetsAllowed ? "Pets allowed": "No Pets allowed"}</label>
+                                <input type="checkbox" onClick={(e) => setPetsAllowed(!PetsAllowed)} />
+                        </div>
+                    </Collapse>
+                    <br/>
+
+                    <Button onClick={handleSearch}>Search</Button>
+                    <Button onClick ={handleReset}>Reset Filters</Button>
+                </Col>    
+                <Col xs={8}>
+                    {listOfApartments.map(item => 
+                        (<Card style={{width: 500, display: "inline-block", margin: 16}}>
+                            <Card.Header>item.id</Card.Header>
+                            <CardImg src={sampleImage}/>
+                            <Card.Title>item.street1</Card.Title>
+                            <Card.Text>item.NumberRooms</Card.Text>
+                            <Card.Text>item.NumberBathrooms</Card.Text>
+                            <Card.Text>item.MonthlyPrice</Card.Text>
+                            <Card.Text>item.CentralAC</Card.Text>
+                            <Card.Text>item.Refubished</Card.Text>
+                            <Card.Text>item.PetsAllowed</Card.Text>
+                            <Card.Text>item.YearBuilt</Card.Text>
+                        </Card>))
+                        }
+                </Col>
+            </Row>
         </div>
     );
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace webAPI{
     public class Tenant{
-        public string TenantID { get; set; }
+        public int TenantID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

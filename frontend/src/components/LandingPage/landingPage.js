@@ -28,27 +28,7 @@ const LandingPage = () => {
     const [listOfApartments, setListOfApartments] = useState([1,1,1,1]);
 
     const handleReset = () => {
-        setZipcode(66502);
-        setCity(""); 
-        setMonthlyPrice(0);
-        setAvailable(true); 
-        setYearBuilt(undefined); 
-        setCentralAC(false); 
-        setNumberRooms(0); 
-        setNumberBathrooms(0);
-        setRefurbished(false); 
-        setPetsAllowed(false);
-
-        setSearchByZipcode(false);
-        setSearchByCity(false);
-        setsearchByMonthlyPrice(false);
-        setSearchByAvailable(false);
-        setsearchByYearBuilt(false);
-        setSearchByCentralAC(false);
-        setsearchByNumberBathrooms(false);
-        setsearchByNumberRooms(false);
-        setSearchByRefurbished(false);
-        setsearchByPetsAllowed(false);
+        window.location = "/"
     }
 
     const handleSearch = () => {
@@ -57,16 +37,16 @@ const LandingPage = () => {
 
     const loadData = async () => {
         const filterData = new FormData();
-        filterData.append("city", City);
-        filterData.append("zipcode", Zipcode);
-        if(YearBuilt !== undefined){
-            filterData.append("YearBuilt", YearBuilt);
-        }else{filterData.append("YearBuilt",undefined)}
-        filterData.append("centralac", CentralAC);
-        filterData.append("numberrooms", NumberRooms);
-        filterData.append("numberbathrooms", NumberBathrooms);
-        filterData.append("refurbished", Refurbished);
-        filterData.append("petallowed", PetsAllowed);
+        
+        filterData.append("city", (searchByCity ? City :"null") );
+        filterData.append("zipcode", (searchByZipcode ? Zipcode :"null") );
+        filterData.append("zipcode", (searchByAvailable ? Available :"null") );
+        filterData.append("YearBuilt", (searchByYearBuilt ? YearBuilt :"null") );
+        filterData.append("centralac", (searchByCentralAC ? CentralAC :"null") );
+        filterData.append("numberrooms", (searchByNumberRooms ? NumberRooms :"null") );
+        filterData.append("numberbathrooms", (searchByNumberBathrooms ? NumberBathrooms :"null") );
+        filterData.append("refurbished", (searchByRefurbished ? Refurbished :"null") );
+        filterData.append("petallowed", (searchByPetsAllowed ? PetsAllowed :"null") );
 
         //TODO: add appropriate url to fetch argument
         await fetch(`localhost:8000/get/apartments`,{
@@ -203,11 +183,12 @@ const LandingPage = () => {
                     <Button onClick ={handleReset}>Reset Filters</Button>
                 </Col>    
                 <Col xs={8}>
-                    {listOfApartments.map(item => 
-                        (<Card style={{width: 500, display: "inline-block", margin: 16}}>
+                    {listOfApartments.map((item, index) => 
+                        (<Card key = {index} style={{width: 500, display: "inline-block", margin: 16}}>
                             <Card.Header>item.id</Card.Header>
                             <CardImg src={sampleImage}/>
                             <Card.Title>item.street1</Card.Title>
+                            <Card.Text>item.street2 === null ? "": item.street2</Card.Text>
                             <Card.Text>item.NumberRooms</Card.Text>
                             <Card.Text>item.NumberBathrooms</Card.Text>
                             <Card.Text>item.MonthlyPrice</Card.Text>
@@ -215,6 +196,7 @@ const LandingPage = () => {
                             <Card.Text>item.Refubished</Card.Text>
                             <Card.Text>item.PetsAllowed</Card.Text>
                             <Card.Text>item.YearBuilt</Card.Text>
+                            <Card.Text>item.DateAvailable? non-null</Card.Text>
                         </Card>))
                         }
                 </Col>

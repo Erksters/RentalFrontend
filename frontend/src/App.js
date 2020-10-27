@@ -20,7 +20,7 @@ const  App = () => {
             <CreatePropertyOwner/>
           </Route>
           <Route exact path="/">
-<LandingPage/>
+            <LandingPage/>
           </Route>
         </Switch>
       </Router>

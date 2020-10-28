@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreateApartment from './components/Apartment/createApartment';
 import CreateContract from './components/Contract/createContract';
+import CreateContractAgreement from './components/ContractAgreement/createContractAgreement';
 import LandingPage from './components/LandingPage/landingPage';
 import NavigationBar from './components/NavBar/NavBar';
 import CreatePropertyOwner from './components/PropertyOwner/createPropertyOwner';
@@ -11,7 +12,6 @@ const  App = () => {
   return (
     <div className="App">
       <NavigationBar/>
-
       <Router>
         <Switch>
           <Route path="/create/tenant">
@@ -23,7 +23,10 @@ const  App = () => {
           <Route path="/create/contract">
             <CreateContract/>
           </Route>
-          <Route exact path="/create/propetyowner">
+          <Route path="/create/contractagreement">
+            <CreateContractAgreement/>
+          </Route>
+          <Route path="/create/propetyowner">
             <CreatePropertyOwner/>
           </Route>
           <Route exact path="/">

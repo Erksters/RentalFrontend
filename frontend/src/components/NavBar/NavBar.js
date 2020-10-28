@@ -3,7 +3,6 @@ import { Navbar, NavDropdown, Nav } from "react-bootstrap";
 
 const NavigationBar = (props) => {
 
-
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/">K-State Rentals</Navbar.Brand>

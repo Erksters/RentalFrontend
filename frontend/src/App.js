@@ -6,6 +6,7 @@ import CreateContractAgreement from './components/ContractAgreement/createContra
 import LandingPage from './components/LandingPage/landingPage';
 import NavigationBar from './components/NavBar/NavBar';
 import CreatePropertyOwner from './components/PropertyOwner/createPropertyOwner';
+import AddCreditScore from './components/Tenants/addCreditScore';
 import CreateTenant from './components/Tenants/createTenant';
 
 const  App = () => {
@@ -28,6 +29,9 @@ const  App = () => {
           </Route>
           <Route path="/create/propetyowner">
             <CreatePropertyOwner/>
+          </Route>
+          <Route path="/credit/score">
+            <AddCreditScore/>
           </Route>
           <Route exact path="/">
             <LandingPage/>

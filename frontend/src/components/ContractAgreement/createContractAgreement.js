@@ -10,14 +10,14 @@ const CreateContractAgreement = (props) => {
     
 
   const handleSubmit = async () => {
-    if(ContractID === undefined) {
-      swal("Please enter a legitimate Contract ID")
-      return;
+  if(ContractID === undefined) {
+    swal("Please enter a legitimate Contract ID")
+    return;
   }
   if(TenantID === undefined) {
     swal("Please enter a legitimate Tenant ID")
     return;
-}
+  }
     
     //send it
     //Is there a unique constraint error?
@@ -56,8 +56,6 @@ const CreateContractAgreement = (props) => {
             
         </div>
       </div>
-        
-      
   )
 }
 

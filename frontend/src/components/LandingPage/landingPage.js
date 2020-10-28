@@ -31,17 +31,14 @@ const LandingPage = () => {
         window.location = "/"
     }
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
 
-    }
-
-    const loadData = async () => {
         const filterData = new FormData();
         
         filterData.append("city", (searchByCity ? City :"null") );
         filterData.append("zipcode", (searchByZipcode ? Zipcode :"null") );
         filterData.append("zipcode", (searchByAvailable ? Available :"null") );
-        filterData.append("YearBuilt", (searchByYearBuilt ? YearBuilt :"null") );
+        filterData.append("yearbuilt", (searchByYearBuilt ? YearBuilt :"null") );
         filterData.append("centralac", (searchByCentralAC ? CentralAC :"null") );
         filterData.append("numberrooms", (searchByNumberRooms ? NumberRooms :"null") );
         filterData.append("numberbathrooms", (searchByNumberBathrooms ? NumberBathrooms :"null") );

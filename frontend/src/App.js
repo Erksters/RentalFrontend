@@ -34,6 +34,10 @@ const  App = () => {
           <Route path="/create/propetyowner">
             <CreatePropertyOwner/>
           </Route>
+          <Route path="/update/propetyowner">
+            <div>Update property Owner here</div>
+            {/* <UpdatePropertyOwner/> */}
+          </Route>
           <Route path="/credit/score">
             <AddCreditScore/>
           </Route>

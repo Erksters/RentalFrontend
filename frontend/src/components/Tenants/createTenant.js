@@ -32,7 +32,7 @@ const CreateTenant = (props) => {
     CreateTenantData.append("phonenumber", PhoneNumber);
 
     //TODO: add appropriate url to fetch argument
-    fetch(`localhost:8000/update/tenant`,{
+    fetch(`localhost:8000/create/tenant`,{
         method: "POST",
         body: CreateTenantData,
     })

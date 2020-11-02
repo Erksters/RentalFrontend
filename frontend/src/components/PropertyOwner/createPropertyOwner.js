@@ -53,7 +53,7 @@ const CreatePropertyOwner = (props) => {
         body: PropertyOwnerData,
     })
       .then((response) => {
-        if (response === 200){swal("Contract created!")}
+        if (response === 200){swal("New Property Owner created successfully!")}
       })
       .catch((error) => {});
   }

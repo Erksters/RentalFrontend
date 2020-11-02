@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
-import "./createPropertyOwner.css";
+import "./updatePropertyOwner.css";
 
-const CreatePropertyOwner = (props) => {
+const UpdatePropertyOwner = (props) => {
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [Email, setEmail] = useState("");
@@ -12,9 +12,12 @@ const CreatePropertyOwner = (props) => {
   const [Street2, setStreet2] = useState("");
   const [ZipCode, setZipcode] = useState(0);
   const [City, setCity] = useState("");
+  const [PropertyOwnerID, setPropertyOwnerID] = useState(undefined);
 
   const handleSubmit = () => {
-
+    if (PropertyOwnerID === undefined){
+        swal("Please Enter a Property Owner ID#.");
+    }
     if (FirstName === "" || LastName === ""){
         swal("Please complete your name");
     }
@@ -37,7 +40,8 @@ const CreatePropertyOwner = (props) => {
     //Is there a unique constraint error?
     //Did it successfully Save?
     const PropertyOwnerData = new FormData();
-    
+        
+    PropertyOwnerData.append("propertyownerid", PropertyOwnerID);
     PropertyOwnerData.append("firstname", FirstName );
     PropertyOwnerData.append("lastname", LastName);
     PropertyOwnerData.append("email",Email );
@@ -48,7 +52,7 @@ const CreatePropertyOwner = (props) => {
     PropertyOwnerData.append("city",City);
     
     //TODO: add appropriate url to fetch argument
-    fetch(`localhost:8000/create/propertyowner`,{
+    fetch(`localhost:8000/update/propertyowner`,{
         method: "POST",
         body: PropertyOwnerData,
     })
@@ -60,8 +64,11 @@ const CreatePropertyOwner = (props) => {
 
   return(
       <div className="centerDiv">
-        <div >
-            <h3>Enter PropertyOwner information here</h3>
+        <div>
+            <label className="pr-2 labels">Property Owner ID#</label>
+            <input type="number" onChange={(e) => setPropertyOwnerID(e.target.value)} />
+            <br/>
+            <h3>Enter Property Owner information here to update</h3>
             <label className="pr-2 labels">First Name</label>
             <input type="text" onChange={(e) => setFirstName(e.target.value)} />
             <br/>
@@ -80,16 +87,12 @@ const CreatePropertyOwner = (props) => {
             <label className="pr-2 labels">Secondary Street Address</label>
             <input type="text" onChange={(e) => setStreet2(e.target.value)} />
             <br/>
-
             <label className="pr-2 labels">City</label>
             <input type="text" onChange={(e) => setCity(e.target.value)} />
             <br/>
-
             <label className="pr-2 labels">ZipCode</label>
             <input type="number" onChange={(e) => setZipcode(e.target.value)} />
-            
             <br/>
-
             <Button size="lg" onClick={handleSubmit}>
                 Submit
             </Button>
@@ -100,4 +103,4 @@ const CreatePropertyOwner = (props) => {
   )
 }
 
-export default CreatePropertyOwner;
+export default UpdatePropertyOwner;

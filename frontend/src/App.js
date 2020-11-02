@@ -6,6 +6,7 @@ import CreateContractAgreement from './components/ContractAgreement/createContra
 import LandingPage from './components/LandingPage/landingPage';
 import NavigationBar from './components/NavBar/NavBar';
 import CreatePropertyOwner from './components/PropertyOwner/createPropertyOwner';
+import UpdatePropertyOwner from './components/PropertyOwner/updatePropertyOwner';
 import AddCreditScore from './components/Tenants/addCreditScore';
 import CreateTenant from './components/Tenants/createTenant';
 import UpdateTenant from './components/Tenants/updateTenant';
@@ -35,8 +36,7 @@ const  App = () => {
             <CreatePropertyOwner/>
           </Route>
           <Route path="/update/propetyowner">
-            <div>Update property Owner here</div>
-            {/* <UpdatePropertyOwner/> */}
+            <UpdatePropertyOwner/>
           </Route>
           <Route path="/credit/score">
             <AddCreditScore/>

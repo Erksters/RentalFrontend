@@ -57,7 +57,7 @@ const UpdatePropertyOwner = (props) => {
         body: PropertyOwnerData,
     })
       .then((response) => {
-        if (response === 200){swal("Contract created!")}
+        if (response === 200){swal("Property Owner updated successfully!")}
       })
       .catch((error) => {});
   }

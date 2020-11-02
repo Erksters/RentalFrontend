@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
-import "./createTenant.css";
+import "./updateTenant.css";
 
-const CreateTenant = (props) => {
+const UpdateTenant = (props) => {
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [Email, setEmail] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState(0);
-  
+  const [TenantID, setTenantID] = useState(undefined);
+
   const handleSubmit = () => {
+    if (TenantID === undefined){
+        swal("Please Enter a TenantID number");
+    }
 
     if (FirstName === "" || LastName === ""){
         swal("Please complete your name");
@@ -24,27 +28,31 @@ const CreateTenant = (props) => {
     //send it
     //Is there a unique constraint error?
     //Did it successfully Save?
-    const CreateTenantData = new FormData();
+    const UpdateTenantData = new FormData();
         
-    CreateTenantData.append("firstname", FirstName);
-    CreateTenantData.append("lastname", LastName);
-    CreateTenantData.append("email", Email);
-    CreateTenantData.append("phonenumber", PhoneNumber);
+    UpdateTenantData.append("firstname", FirstName);
+    UpdateTenantData.append("lastname", LastName);
+    UpdateTenantData.append("email", Email);
+    UpdateTenantData.append("phonenumber", PhoneNumber);
+    UpdateTenantData.append("tenantid", TenantID);
 
     //TODO: add appropriate url to fetch argument
     fetch(`localhost:8000/update/tenant`,{
         method: "POST",
-        body: CreateTenantData,
+        body: UpdateTenantData,
     })
       .then((response) => {
-        if (response.status === 200){swal("Tenant Created Successfully!")}
+        if (response.status === 200){swal("Tenant Information Updated Successfully!")}
       })
       .catch((error) => {});
   }
 
   return(
       <div className="centerDiv">
-        <div >
+        <div>
+            <label className="pr-2 labels">Tenant ID#</label>
+            <input type="number" onChange={(e) => setTenantID(e.target.value)} />
+            <br/>
             <h3>Enter Tenant information here</h3>
             <label className="pr-2 labels">First Name</label>
             <input type="text" onChange={(e) => setFirstName(e.target.value)} />
@@ -69,4 +77,4 @@ const CreateTenant = (props) => {
   )
 }
 
-export default CreateTenant;
+export default UpdateTenant;

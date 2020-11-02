@@ -22,7 +22,7 @@ const NavigationBar = (props) => {
           </NavDropdown>
 
           <NavDropdown title="Admin" id="basic-nav-dropdown">          
-            <Nav.Link href="/report/Queries">Report Queries</Nav.Link>
+            <Nav.Link href="/report/queries">Report Queries</Nav.Link>
             <Nav.Link href="/create/Contract">Create Contract</Nav.Link>
             <Nav.Link href="/create/ContractAgreement">Create Contract Agreements</Nav.Link>
             <Nav.Link href="/credit/score">Add Credit Score</Nav.Link>

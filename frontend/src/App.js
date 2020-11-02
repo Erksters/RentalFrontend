@@ -8,6 +8,7 @@ import NavigationBar from './components/NavBar/NavBar';
 import CreatePropertyOwner from './components/PropertyOwner/createPropertyOwner';
 import AddCreditScore from './components/Tenants/addCreditScore';
 import CreateTenant from './components/Tenants/createTenant';
+import UpdateTenant from './components/Tenants/updateTenant';
 
 const  App = () => {
   return (
@@ -16,10 +17,13 @@ const  App = () => {
       <Router>
         <Switch>
           <Route path="/create/tenant">
-          <CreateTenant/>
+            <CreateTenant/>
+          </Route>
+          <Route path="/update/tenant">
+            <UpdateTenant/>
           </Route>
           <Route path="/create/apartment">
-          <CreateApartment/>
+            <CreateApartment/>
           </Route>
           <Route path="/create/contract">
             <CreateContract/>

@@ -28,12 +28,36 @@ const CreateApartment = (props) => {
     if (Street1 === ""){
         swal("Please Enter a Street address name.");
     }
-    if(ZipCode > 99999 || ZipCode === 0){
+    if(ZipCode > 99999 || ZipCode === 0 || ZipCode < 10000){
         swal("Please Enter a legitimate Zip Code");
       }
     //send it
     //Is there a unique constraint error?
     //Did it successfully Save?
+    const UpdateTenantData = new FormData();
+        
+    UpdateTenantData.append("street1", Street1);
+    UpdateTenantData.append("street2", Street2);
+    UpdateTenantData.append("zipcode", ZipCode);
+    UpdateTenantData.append("city", City);
+    UpdateTenantData.append("monthlyprice", MonthlyPrice);
+    UpdateTenantData.append("available", Available);
+    UpdateTenantData.append("yearbuilt", YearBuilt);
+    UpdateTenantData.append("centralac", CentralAC);
+    UpdateTenantData.append("numberrooms", NumberRooms);
+    UpdateTenantData.append("numberbathrooms", NumberBathrooms);
+    UpdateTenantData.append("refurbished", Refurbished);
+    UpdateTenantData.append("petsallowed", PetsAllowed);
+
+    //TODO: add appropriate url to fetch argument
+    fetch(`localhost:8000/create/apartment`,{
+      method: "POST",
+      body: UpdateTenantData,
+  })
+    .then((response) => {
+      if (response.status === 200){swal("Tenant Information Updated Successfully!")}
+    })
+    .catch((error) => {});
   }
 
   return(

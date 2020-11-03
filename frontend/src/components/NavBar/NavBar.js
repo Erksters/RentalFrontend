@@ -19,6 +19,7 @@ const NavigationBar = (props) => {
           <NavDropdown title="Property Owners" id="basic-nav-dropdown">          
             <Nav.Link href="/create/propetyowner">Become a property Owner</Nav.Link>
             <Nav.Link href="/update/propetyowner">Update Property Owner info</Nav.Link>
+            <Nav.Link href="/update/apartment">Update Apartment info</Nav.Link>
           </NavDropdown>
 
           <NavDropdown title="Admin" id="basic-nav-dropdown">          

@@ -28,7 +28,6 @@ const  App = () => {
           <Route path="/create/apartment">
             <CreateApartment/>
           </Route>
-
           <Route path="/update/apartment">
             <UpdateApartment/>
           </Route>

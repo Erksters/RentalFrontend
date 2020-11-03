@@ -38,28 +38,28 @@ const UpdateApartment = (props) => {
     //send it
     //Is there a unique constraint error?
     //Did it successfully Save?
-    const UpdateTenantData = new FormData();
+    const UpdateApartmentData = new FormData();
         
-    UpdateTenantData.append("street1", Street1);
-    UpdateTenantData.append("street2", Street2);
-    UpdateTenantData.append("zipcode", ZipCode);
-    UpdateTenantData.append("city", City);
-    UpdateTenantData.append("monthlyprice", MonthlyPrice);
-    UpdateTenantData.append("available", Available);
-    UpdateTenantData.append("yearbuilt", YearBuilt);
-    UpdateTenantData.append("centralac", CentralAC);
-    UpdateTenantData.append("numberrooms", NumberRooms);
-    UpdateTenantData.append("numberbathrooms", NumberBathrooms);
-    UpdateTenantData.append("refurbished", Refurbished);
-    UpdateTenantData.append("petsallowed", PetsAllowed);
+    UpdateApartmentData.append("street1", Street1);
+    UpdateApartmentData.append("street2", Street2);
+    UpdateApartmentData.append("zipcode", ZipCode);
+    UpdateApartmentData.append("city", City);
+    UpdateApartmentData.append("monthlyprice", MonthlyPrice);
+    UpdateApartmentData.append("available", Available);
+    UpdateApartmentData.append("yearbuilt", YearBuilt);
+    UpdateApartmentData.append("centralac", CentralAC);
+    UpdateApartmentData.append("numberrooms", NumberRooms);
+    UpdateApartmentData.append("numberbathrooms", NumberBathrooms);
+    UpdateApartmentData.append("refurbished", Refurbished);
+    UpdateApartmentData.append("petsallowed", PetsAllowed);
 
     //TODO: add appropriate url to fetch argument
-    fetch(`localhost:8000/create/apartment`,{
+    fetch(`localhost:8000/update/apartment`,{
       method: "POST",
-      body: UpdateTenantData,
+      body: UpdateApartmentData,
   })
     .then((response) => {
-      if (response.status === 200){swal("Tenant Information Updated Successfully!")}
+      if (response.status === 200){swal("Apartment Information Updated Successfully!")}
     })
     .catch((error) => {});
   }

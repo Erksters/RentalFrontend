@@ -7,6 +7,7 @@ import LandingPage from './components/LandingPage/landingPage';
 import NavigationBar from './components/NavBar/NavBar';
 import CreatePropertyOwner from './components/PropertyOwner/createPropertyOwner';
 import UpdatePropertyOwner from './components/PropertyOwner/updatePropertyOwner';
+import ReportQueries from './components/ReportQueries/reportQueries';
 import AddCreditScore from './components/Tenants/addCreditScore';
 import CreateTenant from './components/Tenants/createTenant';
 import UpdateTenant from './components/Tenants/updateTenant';
@@ -40,6 +41,9 @@ const  App = () => {
           </Route>
           <Route path="/credit/score">
             <AddCreditScore/>
+          </Route>
+          <Route path="/report/queries">
+            <ReportQueries/>
           </Route>
           <Route exact path="/">
             <LandingPage/>

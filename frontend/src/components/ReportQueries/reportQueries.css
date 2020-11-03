@@ -1,0 +1,9 @@
+.centerDiv {
+  justify-content: center;
+  display: flex;
+}
+
+.labels {
+  text-align: right;
+  width: 210px;
+}

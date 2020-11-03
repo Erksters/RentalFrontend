@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
-import "./createApartment.css";
+import "./updateApartment.css";
 
-const CreateApartment = (props) => {
+const UpdateApartment = (props) => {
+    const [ApartmentID, setApartmentID] = useState(undefined);
     const [MyPropertyOwner, setMyPropertyOwner] = useState(undefined);
     const [Street1, setStreet1] = useState("");
     const [Street2, setStreet2] = useState("");
@@ -19,9 +20,12 @@ const CreateApartment = (props) => {
     const [PetsAllowed, setPetsAllowed] = useState(false);
     
   const handleSubmit = () => {
-      if(MyPropertyOwner === undefined) {
-          swal("Please enter a Property owner ID")
-      }
+    if(ApartmentID === undefined){
+        swal("Please enter an apartment ID number");
+    }
+    if(MyPropertyOwner === undefined) {
+        swal("Please enter a Property owner ID");
+    }
     if (City === ""){
         swal("Please Enter a city name.");
     }
@@ -50,12 +54,12 @@ const CreateApartment = (props) => {
     UpdateApartmentData.append("petsallowed", PetsAllowed);
 
     //TODO: add appropriate url to fetch argument
-    fetch(`localhost:8000/create/apartment`,{
+    fetch(`localhost:8000/update/apartment`,{
       method: "POST",
       body: UpdateApartmentData,
   })
     .then((response) => {
-      if (response.status === 200){swal("Apartment Information Created Successfully!")}
+      if (response.status === 200){swal("Apartment Information Updated Successfully!")}
     })
     .catch((error) => {});
   }
@@ -63,6 +67,9 @@ const CreateApartment = (props) => {
   return(
       <div className="centerDiv">
         <div >
+            <label className="pr-2 labels">Apartment ID#</label>
+            <input type="number" onChange={(e) => setApartmentID(e.target.value)} />
+            <br/>
             <h3>Enter Apartment information here</h3>
             <label className="pr-2 labels">MyPropertyOwner ID#</label>
             <input type="number" onChange={(e) => setMyPropertyOwner(e.target.value)} />
@@ -125,4 +132,4 @@ const CreateApartment = (props) => {
   )
 }
 
-export default CreateApartment;
+export default UpdateApartment;

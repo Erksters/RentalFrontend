@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreateApartment from './components/Apartment/createApartment';
+import UpdateApartment from './components/Apartment/updateApartment';
 import CreateContract from './components/Contract/createContract';
 import CreateContractAgreement from './components/ContractAgreement/createContractAgreement';
 import LandingPage from './components/LandingPage/landingPage';
@@ -26,6 +27,9 @@ const  App = () => {
           </Route>
           <Route path="/create/apartment">
             <CreateApartment/>
+          </Route>
+          <Route path="/update/apartment">
+            <UpdateApartment/>
           </Route>
           <Route path="/create/contract">
             <CreateContract/>

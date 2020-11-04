@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, CardImg, Col, Collapse, Row ,} from "react-bootstrap";
+import Loading from "../Loading/Loading";
 
 const LandingPage = () => {
     const sampleImage = "https://apollostore.blob.core.windows.net/multifamilybiz/News/Verve_Luxury_Apartments.jpg";
@@ -63,7 +64,9 @@ const LandingPage = () => {
         
         // setListOfApartments(loadData());  //Should return a list
     })
-
+    if (listOfApartments.length === 0){
+        return <Loading />
+    }
     return(
         <div>
             <Row>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import swal from "sweetalert"
+import Loading from "../Loading/Loading";
 import "./genericFetch.css";
 
 const GenericFetch = (props) => {
@@ -37,7 +37,7 @@ const GenericFetch = (props) => {
     NumberOfContracts === undefined ||
     NumberOfContractAgreements === undefined     
     ){
-        return <> </>;
+        return <Loading/>;
     
     }
   return(

@@ -18,12 +18,6 @@ const Loading = (props) => {
         </div>
       </div>
 
-      <div
-        style={{
-          backgroundColor: "whitesmoke",
-          height: minHeight,
-        }}
-      ></div>
     </>
   );
 };

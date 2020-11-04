@@ -24,6 +24,7 @@ const NavigationBar = (props) => {
 
           <NavDropdown title="Admin" id="basic-nav-dropdown">          
             <Nav.Link href="/report/queries">Report Queries</Nav.Link>
+            <Nav.Link href="/generic/fetch">Generics</Nav.Link>
             <Nav.Link href="/create/contract">Create Contract</Nav.Link>
             <Nav.Link href="/create/contractAgreement">Create Contract Agreements</Nav.Link>
             <Nav.Link href="/credit/score">Add Credit Score</Nav.Link>

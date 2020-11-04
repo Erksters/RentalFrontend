@@ -39,13 +39,13 @@ const ReportQueries = (props) => {
             <label className="pr-2 labels">The average price for all contracts ranked by year</label>
             <br/>
             <label className="pr-2 labels">Number of Returning Tenenats</label>
-            <textarea>{returningTenantPercentage}</textarea>
+            <label>{returningTenantPercentage}</label>
             <br/>
             <label className="pr-2 labels">Returning Tenant percentage</label>
-            <textarea>{NumberOfReturningTenants}</textarea>
+            <label>{NumberOfReturningTenants}</label>
             <br/>
             <label className="pr-2 labels">Number of Occurences where the combined credit score of tenants is greater that 1400</label>
-            <textarea>{safeContracts}</textarea>
+            <label>{safeContracts}</label>
             <br/>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import GenericFetch from './components/Admin/GenericFetch';
 import CreateApartment from './components/Apartment/createApartment';
 import UpdateApartment from './components/Apartment/updateApartment';
 import CreateContract from './components/Contract/createContract';
@@ -48,6 +49,9 @@ const  App = () => {
           </Route>
           <Route path="/report/queries">
             <ReportQueries/>
+          </Route>
+          <Route path="/generic/fetch">
+            <GenericFetch/>
           </Route>
           <Route exact path="/">
             <LandingPage/>
